@@ -1,8 +1,9 @@
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import { peerDependencies } from "./package.json";
 import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 
+const env = loadEnv("dev", process.cwd(), "");
 export default defineConfig({
   build: {
     commonjsOptions: {
@@ -24,6 +25,9 @@ export default defineConfig({
     },
     sourcemap: true, // Generates source maps for debugging.
     emptyOutDir: true, // Clears the output directory before building.
+  },
+  define: {
+    "process.env": env,
   },
   resolve: {
     alias: {

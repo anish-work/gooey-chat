@@ -4,9 +4,6 @@ import Header from "./components/Header";
 import Messages from "./components/Messages";
 import ChatInput from "./components/ChatInput";
 
-interface ViewState {
-  view: "history" | "new";
-}
 
 const Widget = () => {
   const [viewState, setViewState] = useState<ViewState>({
@@ -22,7 +19,7 @@ const Widget = () => {
       id="gooeyChat-widget-container"
       className="bg-white bx-shadowA d-flex flex-col pos-relative"
     >
-      <Header onViewChange={handleViewChange} />
+      <Header viewState={viewState} onViewChange={handleViewChange} />
       <Messages />
       <ChatInput />
     </div>

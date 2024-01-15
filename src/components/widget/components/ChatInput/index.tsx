@@ -1,11 +1,13 @@
 import IconButton from "src/components/shared/IconButton";
 import "./chatInput.scss";
 import { useEffect, useState } from "react";
+import { useResponseContext } from "src/App";
 
 const CHAT_INPUT_ID = "gooeyChat-input";
 const CHAT_TEXTAREA_ID = "gooeyChat-textArea";
 
 const ChatInput = () => {
+  const { initializeQuery } = useResponseContext();
   const [value, setValue] = useState("");
   const [isMultiline, setIsMultiple] = useState(false);
   const [isFocused, setFocused] = useState(true);
@@ -14,19 +16,20 @@ const ChatInput = () => {
     if (!isFocused) return;
     if (event.key === "Enter") {
       setIsMultiple(true);
-      const ele = document.getElementById(CHAT_TEXTAREA_ID);
-      console.log(ele, ">>");
     }
   };
 
   const handleInputChange = (e) => {
     const { value } = e.target;
-    console.log(value, ">>");
     setValue(value);
   };
 
   const handleFocus = () => {
     setFocused(true);
+  };
+
+  const handleSendMessage = () => {
+    initializeQuery(value);
   };
 
   useEffect(() => {
@@ -76,13 +79,29 @@ const ChatInput = () => {
 
           {/* Send Actions */}
           <div>
-            <IconButton className="bg-darkGrey">{">>"}</IconButton>
+            <IconButton className="bg-darkGrey" onClick={handleSendMessage}>
+              {">>"}
+            </IconButton>
           </div>
         </div>
       </div>
 
-      {/* Blur Background */}
-      <div className="gooeyChat-input-blurBottom"></div>
+      {/* Blur Background - Mast head */}
+      <div className="gooeyChat-input-blurBottom d-flex justify-end">
+        <p
+          className="font_08_500 pl-16 pt-4 pb-2 text-darkGrey pr-12"
+          style={{ fontSize: "8px" }}
+        >
+          Powered by:{" "}
+          <a
+            href="https://gooey.ai"
+            target="_ablank"
+            className="text-darkGrey text-underline hover-underline"
+          >
+            gooey.ai
+          </a>
+        </p>
+      </div>
     </div>
   );
 };
