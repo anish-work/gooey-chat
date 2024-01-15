@@ -1,0 +1,111 @@
+@import "./colors.scss";
+
+// Text classes
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+.text-grey2 {
+  color: $text-grey2;
+}
+
+.hover-underline:hover {
+  text-decoration: underline;
+}
+
+.text-lowercase {
+  text-transform: lowercase;
+}
+
+.text-decoration-none {
+  text-decoration: none;
+}
+
+.translucent-text {
+  opacity: 0.67;
+}
+
+.br-default {
+  border-radius: 8px !important;
+}
+
+.br-small {
+  border-radius: 2px !important;
+}
+
+.br-large {
+  border-radius: 16px !important;
+}
+
+.b-1 {
+  border: 1px solid;
+}
+
+.b-none {
+  border: none !important;
+}
+.hero-height {
+  min-height: auto;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-x-clip {
+  overflow-x: clip;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.b-circle {
+  border-radius: 50%;
+}
+
+.full-opacity {
+  opacity: 1;
+}
+
+.cr-pointer {
+  cursor: pointer;
+}
+
+.lineHeight-120 {
+  line-height: 120% !important;
+}
+.lineHeight-125 {
+  line-height: 125% !important;
+}
+.lineHeight-135 {
+  line-height: 135% !important;
+}
+.lineHeight-160 {
+  line-height: 160% !important;
+}
+
+// laptop
+@media (min-width: 1100px) {
+  .br-small {
+    border-radius: 4px !important;
+  }
+  
+  .hero-height {
+    min-height: 100vh;
+  }
+}
+
+@media (max-width: 1100px) {
+  .xs-text-center {
+    text-align: center;
+  }
+
+  .xs-b-none {
+    border: none;
+  }
+}

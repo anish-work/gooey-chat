@@ -1,0 +1,12 @@
+body {
+  overflow: hidden;
+  background: none transparent !important;
+  margin: 0;
+  height: 100%;
+}
+#root {
+  height: 100%;
+}
+html {
+  height: 100%;
+}

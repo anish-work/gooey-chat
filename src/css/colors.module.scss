@@ -1,0 +1,16 @@
+@import './_breakpoints.scss';
+@import './_mixins.scss';
+
+$primary: #0a142f;
+$secondary: #fd4b80;
+
+$selected-blue-text: #3962AA;
+$colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+);
+
+:export {
+  primary: $primary;
+  secondary: $secondary;
+}
