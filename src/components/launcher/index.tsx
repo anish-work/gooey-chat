@@ -4,7 +4,7 @@ import "./launcher.scss";
 import { useWidgetContext } from "../contexts/widgetContext";
 
 const Launcher = () => {
-  const { toggleWidget, widgetState } = useWidgetContext();
+  const { toggleWidget, widgetState }: any = useWidgetContext();
 
   const receiveMessage = (event: any) => {
     console.log(event.data.type, ">>REC");

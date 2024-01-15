@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
 
 const ResponseLoader = (props: any) => {
-  const LoaderRef = useRef({});
+  const LoaderRef = useRef(null);
   useEffect(() => {
     if (props.show) {
-      const loader = LoaderRef.current;
+      const loader: any = LoaderRef.current;
       loader.scrollIntoView(false, {
         behavior: "smooth",
       });

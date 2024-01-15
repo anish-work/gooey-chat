@@ -3,12 +3,12 @@ import "./header.scss";
 import IconButton from "src/components/shared/IconButton";
 import { useWidgetContext } from "../../../contexts/widgetContext";
 
-interface HeaderProps {
-  onViewChange: object | null;
-  viewState: object | null;
-}
-const Header = (props: HeaderProps) => {
-  const { toggleWidget } = useWidgetContext();
+// interface HeaderProps {
+//   onViewChange: object | null;
+//   viewState: object | null;
+// }
+const Header = () => {
+  const { toggleWidget }: any = useWidgetContext();
 
   const handleClose = () => {
     toggleWidget(false);

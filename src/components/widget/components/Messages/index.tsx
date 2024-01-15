@@ -5,7 +5,7 @@ import ResponseLoader from "../Loader";
 import { useResponseContext } from "src/App";
 
 const Suggestions = () => {
-  const { initializeQuery } = useResponseContext();
+  const { initializeQuery }: any = useResponseContext();
   return (
     <div className="mb-80">
       <p>I can also tell you about</p>
@@ -31,7 +31,7 @@ const Response = (props: any) => {
 
   return (
     <div>
-      {que.map((id) => {
+      {que.map((id: string) => {
         const responseData = data[id];
         const role = responseData.role;
 
@@ -50,7 +50,7 @@ const Response = (props: any) => {
 };
 
 const Messages = () => {
-  const { responses, isSending } = useResponseContext();
+  const { responses, isSending }: any = useResponseContext();
 
   return (
     <div className="flex-1 pl-16 pr-16 pt-16 overflow-scroll">

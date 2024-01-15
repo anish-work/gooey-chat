@@ -7,19 +7,19 @@ const CHAT_INPUT_ID = "gooeyChat-input";
 const CHAT_TEXTAREA_ID = "gooeyChat-textArea";
 
 const ChatInput = () => {
-  const { initializeQuery } = useResponseContext();
+  const { initializeQuery }: any = useResponseContext();
   const [value, setValue] = useState("");
   const [isMultiline, setIsMultiple] = useState(false);
   const [isFocused, setFocused] = useState(true);
 
-  const handleNewLine = (event) => {
+  const handleNewLine = (event: any) => {
     if (!isFocused) return;
     if (event.key === "Enter") {
       setIsMultiple(true);
     }
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: any) => {
     const { value } = e.target;
     setValue(value);
   };

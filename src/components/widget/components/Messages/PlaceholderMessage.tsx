@@ -8,7 +8,7 @@ export const DEMO_QUERIES = {
   d: "What are places to visit as a tourist in France ?",
 };
 const PlaceholderMessage = () => {
-  const { initializeQuery } = useResponseContext();
+  const { initializeQuery }: any = useResponseContext();
   return (
     <div className="d-flex flex-1 h-100 flex-col">
       <p className="anim-typing text-darkGrey font_18_600">
