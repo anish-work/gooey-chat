@@ -29,6 +29,7 @@ const Response = (props: any) => {
   const data = props.data;
   const que = props.queue;
 
+  if (!que) return null;
   return (
     <div>
       {que.map((id: string) => {
