@@ -12,8 +12,8 @@ const ResponseLoader = (props: any) => {
   }, [props.show]);
   if (!props.show) return null;
   return (
-    <div ref={LoaderRef} className="p-10 b-1">
-      Loading response .. . . . .{" "}
+    <div ref={LoaderRef} className="p-10 b-1 anim-typing">
+      Loading response...{" "}
     </div>
   );
 };

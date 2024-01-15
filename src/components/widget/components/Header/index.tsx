@@ -1,7 +1,7 @@
 import brandLogo from "src/assets/brand-logo.svg";
 import "./header.scss";
 import IconButton from "src/components/shared/IconButton";
-import { useWidgetContext } from "../../contexts/widgetContext";
+import { useWidgetContext } from "../../../contexts/widgetContext";
 
 interface HeaderProps {
   onViewChange: object | null;

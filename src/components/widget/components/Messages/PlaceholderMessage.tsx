@@ -1,8 +1,11 @@
 import { useResponseContext } from "src/App";
 import "./incoming.scss";
-const DEMO_QUERIES = {
+
+export const DEMO_QUERIES = {
   a: "What is the best time to visit Kashmir ?",
   b: "Is visa required for Indians to visit Thailand ?",
+  c: "How long a Europe tour should be ?",
+  d: "What are places to visit as a tourist in France ?",
 };
 const PlaceholderMessage = () => {
   const { initializeQuery } = useResponseContext();
