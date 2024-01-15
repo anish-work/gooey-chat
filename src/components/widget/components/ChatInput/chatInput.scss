@@ -1,0 +1,29 @@
+.gooeyChat-chat-input {
+  width: 100%;
+  bottom: 0;
+}
+.gooeyChat-chat-input input {
+  outline: none;
+  width: 100%;
+  border: none;
+}
+
+.gooeyChat-chat-input textarea {
+  outline: none;
+  width: 100%;
+  resize: none;
+  border: none;
+  height: fit-content;
+  max-height: 80px;
+  animation: fade-in-A 0.2s ease;
+}
+
+.gooeyChat-input-blurBottom {
+  background: (255, 255, 255, .4);
+  min-height: 16px;
+  width: 100%;
+  left:0;
+  bottom:0;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}

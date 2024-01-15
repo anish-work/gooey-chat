@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from "react";
-import reactLogo from "../../assets/react.svg";
+import brandLogo from "../../assets/brand-logo.svg";
 import { useWidgetContext } from "../../App";
+import "./launcher.scss";
 
 const Launcher = () => {
   const { toggleWidget, widgetState } = useWidgetContext();
@@ -23,20 +24,22 @@ const Launcher = () => {
   useEffect(() => {
     window.addEventListener("message", receiveMessage);
     return () => window.removeEventListener("message", receiveMessage);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div
       style={{
-        position: "absolute",
         bottom: 0,
         right: 0,
-        paddingRight: "16px",
-        paddingBottom: "16px",
       }}
+      className="pos-absolute pb-16 pr-16"
     >
-      <button onClick={sendMessage}>
-        <img src={reactLogo} className="logo react" alt="React logo" />
+      <button
+        onClick={sendMessage}
+        className="gooeyChat-launchButton hover-grow cr-pointer br-large bx-shadowA bg-darkGrey button-hover"
+      >
+        <img src={brandLogo} className="logo react" alt="React logo" />
       </button>
     </div>
   );

@@ -1,9 +1,31 @@
+import { useState } from "react";
+import "./widget.scss";
+import Header from "./components/Header";
+import Messages from "./components/Messages";
+import ChatInput from "./components/ChatInput";
+
+interface ViewState {
+  view: "history" | "new";
+}
+
 const Widget = () => {
+  const [viewState, setViewState] = useState<ViewState>({
+    view: "new",
+  });
+
+  const handleViewChange = (val: "history" | "new") => {
+    setViewState((prev) => ({ ...prev, view: val }));
+  };
+
   return (
     <div
       id="gooeyChat-widget-container"
-      style={{ height: "100%", background: "red" }}
-    ></div>
+      className="bg-white bx-shadowA d-flex flex-col pos-relative"
+    >
+      <Header onViewChange={handleViewChange} />
+      <Messages />
+      <ChatInput />
+    </div>
   );
 };
 

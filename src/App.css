@@ -1,9 +1,19 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Sen", arial ;
+  letter-spacing: 1px;
+}
+a {
+  text-decoration: none;
+}
 body {
   overflow: hidden;
   background: none transparent !important;
   margin: 0;
   height: 100%;
 }
+
 #root {
   height: 100%;
 }

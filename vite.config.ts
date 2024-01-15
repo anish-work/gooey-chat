@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import { peerDependencies } from "./package.json";
 import react from "@vitejs/plugin-react";
+import { resolve } from "path";
 
 export default defineConfig({
   build: {
@@ -23,6 +24,11 @@ export default defineConfig({
     },
     sourcemap: true, // Generates source maps for debugging.
     emptyOutDir: true, // Clears the output directory before building.
+  },
+  resolve: {
+    alias: {
+      src: resolve(__dirname, "src"),
+    },
   },
   plugins: [react()], // Uses the 'vite-plugin-dts' plugin for generating TypeScript declaration files (d.ts).
 });
