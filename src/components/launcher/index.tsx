@@ -15,7 +15,6 @@ const Launcher = () => {
   };
 
   const sendMessage = useCallback(() => {
-    console.log();
     if (!widgetState.open)
       return window.parent.postMessage({ type: "DOM_MAXIMIZE_WIDGET" }, "*");
     return window.parent.postMessage({ type: "DOM_MINIMIZE_WIDGET" }, "*");

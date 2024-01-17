@@ -1,8 +1,13 @@
 #gooeyChat-widget-container {
   height: 100%;
   animation: popup 0.1s;
-  border-radius: 16px 0px 8px 0px;
-  border-left: 1px solid #eee ;
-  border-top: 1px solid #eee ;
-  border-bottom: 1px solid #eee ;
+};
+
+@media (min-width: 560px) {
+  #gooeyChat-widget-container {
+    border-radius: 16px 0px 8px 0px;
+    border-left: 1px solid #eee ;
+    border-top: 1px solid #eee ;
+    border-bottom: 1px solid #eee ;
+  }
 }

@@ -11,6 +11,7 @@ const Header = () => {
   const { toggleWidget }: any = useWidgetContext();
 
   const handleClose = () => {
+    window.parent.postMessage({ type: "DOM_MINIMIZE_WIDGET" }, "*");
     toggleWidget(false);
   };
 
