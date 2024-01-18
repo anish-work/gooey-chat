@@ -8,7 +8,7 @@ import Button from "src/components/shared/Button";
 const Suggestions = () => {
   const { initializeQuery }: any = useResponseContext();
   return (
-    <div className="pt-12 pb-12">
+    <div className="pb-16">
       <p className="font_12_500 mb-12">I can also tell you about</p>
       <Button
         className="mb-8"
