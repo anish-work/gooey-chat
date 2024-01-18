@@ -41,10 +41,11 @@ const ChatInput = () => {
   };
 
   const handleSendMessage = () => {
+    if (!value.trim()) return null;
+    initializeQuery(value.trim());
+    setValue("");
     const ele: HTMLElement | null = inputRef.current;
     ele!.style!.height = "50px";
-    initializeQuery(value);
-    setValue("");
   };
 
   const handleAttachClick = () => {
@@ -69,7 +70,7 @@ const ChatInput = () => {
       {/* Typing area */}
 
       {/* In line input */}
-      <div className="d-flex align-center  justify-between br-large flex-1 mr-16 ml-16 flex-1">
+      <div className="d-flex align-end justify-between br-large flex-1 mr-16 ml-16 flex-1">
         <div className="mr-12">
           <AttachFilesButton
             open={isExpanded}

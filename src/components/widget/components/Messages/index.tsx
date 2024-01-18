@@ -8,8 +8,8 @@ import Button from "src/components/shared/Button";
 const Suggestions = () => {
   const { initializeQuery }: any = useResponseContext();
   return (
-    <div>
-      <p className="font_12_500 mb-8">I can also tell you about</p>
+    <div className="pt-12 pb-12">
+      <p className="font_12_500 mb-12">I can also tell you about</p>
       <Button
         className="mb-8"
         variant="b"
@@ -18,7 +18,7 @@ const Suggestions = () => {
         {DEMO_QUERIES.c}
       </Button>
       <Button
-        className="mt-8"
+        className="mt-8 mb-8"
         variant="b"
         onClick={() => initializeQuery(DEMO_QUERIES.d)}
       >
@@ -57,7 +57,7 @@ const Messages = () => {
   const { responses, isSending }: any = useResponseContext();
 
   return (
-    <div className="flex-1 bg-white mt-16 mr-16 pl-16 mb-16 pr-16 pt-16 overflow-scroll br-large-right">
+    <div className="flex-1 bg-white mt-16 mr-16 mb-16 p-16  overflow-scroll br-large-right">
       {!responses?.queue?.length && !isSending && <PlaceholderMessage />}
       <Response queue={responses.queue} data={responses.data} />
       {responses?.queue?.length && !isSending && <Suggestions />}
