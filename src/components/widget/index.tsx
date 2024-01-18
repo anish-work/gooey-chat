@@ -18,7 +18,7 @@ const Widget = () => {
   return (
     <div
       id="gooeyChat-widget-container"
-      className="bg-white bx-shadowA d-flex flex-col pos-relative "
+      className="br-large d-flex flex-col pos-relative overflow-hidden"
     >
       <Header />
       <Messages />

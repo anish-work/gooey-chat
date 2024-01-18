@@ -1,10 +1,10 @@
 .gooey-outgoingMsg {
-  padding: 12px;
+  padding: 16px 12px;
   background-color: #eee;
   height: auto;
-  white-space: wrap;
+  white-space: break-word;
   overflow: hidden;
   overflow-wrap: break-word;
   animation: fade-in-A 0.4s;
-  width: 100%
+  width: calc(100% + 16px);
 }

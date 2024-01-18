@@ -1,107 +1,126 @@
 import IconButton from "src/components/shared/IconButton";
 import "./chatInput.scss";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useResponseContext } from "src/App";
+import AttachFilesButton from "./AttachFilesButton";
+import clsx from "clsx";
 
 const CHAT_INPUT_ID = "gooeyChat-input";
-const CHAT_TEXTAREA_ID = "gooeyChat-textArea";
 
 const ChatInput = () => {
   const { initializeQuery }: any = useResponseContext();
   const [value, setValue] = useState("");
-  const [isMultiline, setIsMultiple] = useState(false);
-  const [isFocused, setFocused] = useState(true);
+  // const [file, setFile] = useState("");
 
-  const handleNewLine = (event: any) => {
-    if (!isFocused) return;
-    if (event.key === "Enter") {
-      setIsMultiple(true);
-    }
-  };
+  const [isExpanded, setExpanded] = useState(false);
+  const inputRef = useRef(null);
 
   const handleInputChange = (e: any) => {
+    if (isExpanded) setExpanded(false);
     const { value } = e.target;
     setValue(value);
   };
 
   const handleFocus = () => {
-    setFocused(true);
+    setExpanded(false);
+  };
+
+  const handlePressEnter = (e: any) => {
+    if (e.keyCode === 13 && !e.shiftKey) {
+      e.preventDefault();
+      handleSendMessage();
+    }
+  };
+
+  const handleChangeLine = (e: any) => {
+    // increase height by 24px
+    e.preventDefault();
+    const ele: HTMLElement | null = inputRef.current;
+    ele!.style.height = "";
+    ele!.style!.height = ele!.scrollHeight - 1 + "px";
   };
 
   const handleSendMessage = () => {
+    const ele: HTMLElement | null = inputRef.current;
+    ele!.style!.height = "50px";
     initializeQuery(value);
+    setValue("");
   };
 
+  const handleAttachClick = (val: boolean) => {
+    const ele: HTMLElement | null = inputRef.current;
+    setExpanded((prev) => {
+      ele!.style.marginLeft = prev ? "0" : "6px";
+      return val;
+    });
+    return null;
+  };
+
+  const showSend = !!value.length;
   useEffect(() => {
-    // Focus on input
-    setTimeout(() => {
-      const input = document.getElementById(
-        isMultiline ? CHAT_TEXTAREA_ID : CHAT_INPUT_ID
-      );
-      if (input) input.focus();
-    }, 1000);
-  }, [isMultiline]);
+    const ele: HTMLElement | null = inputRef.current;
+    if (!isExpanded) ele!.style.marginLeft = "0";
+    if (showSend) ele!.style.marginRight = "12px";
+    else ele!.style.marginRight = "0";
+  }, [showSend, isExpanded]);
 
   return (
-    <div className="gooeyChat-chat-input pos-absolute">
-      <div className="bx-shadowA br-default ml-12 mr-12 d-flex flex-col mr-8overflow-hidden flex-1">
-        {/* Typing area */}
+    <div className="gooeyChat-chat-input br-large text-left d-flex flex-col justify-start">
+      {/* Typing area */}
 
-        {/* Multi input */}
-        {!!isMultiline && (
-          <textarea
-            value={value}
-            onChange={handleInputChange}
-            id={CHAT_INPUT_ID}
-            className="flex-1 font_14_500 bg-white mb-0 p-10 br-default pt-16"
-            placeholder="Ask anything..."
-            rows={15}
+      {/* In line input */}
+      <div className="d-flex align-center  justify-between br-large flex-1 mr-16 ml-16 flex-1">
+        <div className="mr-12">
+          <AttachFilesButton
+            open={isExpanded}
+            onAttachClick={handleAttachClick}
           />
-        )}
-
-        {/* In line input */}
-        <div className="d-flex bg-grey w-100 justify-between">
-          {/* Multimedia Selector */}
-          <IconButton>+</IconButton>
-
-          {/* Typing area */}
-          {!isMultiline && (
-            <input
-              value={value}
-              onKeyDown={handleNewLine}
-              onChange={handleInputChange}
-              onFocus={handleFocus}
-              id={CHAT_INPUT_ID}
-              className="pl-10 pr-10 flex-1 font_14_500 bg-white"
-              placeholder="Ask anything..."
-            />
-          )}
-
-          {/* Send Actions */}
-          <div>
-            <IconButton className="bg-darkGrey" onClick={handleSendMessage}>
-              {">>"}
-            </IconButton>
-          </div>
         </div>
+
+        {/* Typing area */}
+        {
+          <textarea
+            ref={inputRef}
+            value={value}
+            onInput={handleChangeLine}
+            onChange={handleInputChange}
+            onKeyDown={handlePressEnter}
+            onFocus={handleFocus}
+            id={CHAT_INPUT_ID}
+            className={clsx(
+              "pl-16 pr-16 br-large pt-16 pb-16 font_16_500 bg-white",
+              showSend ? "w-80" : "w-100"
+            )}
+            placeholder="Message RadBot"
+          />
+        }
+
+        {/* Send Actions */}
+        {showSend && (
+          <IconButton
+            data-tooltip={"Send"}
+            onClick={handleSendMessage}
+            className="pt-16 pb-16 hover-grow br-large pl-16 pr-16"
+          >
+            {"⬆"}
+          </IconButton>
+        )}
       </div>
 
       {/* Blur Background - Mast head */}
-      <div className="gooeyChat-input-blurBottom d-flex justify-end">
-        <p
-          className="font_08_500 pl-16 pt-4 pb-2 text-darkGrey pr-12"
-          style={{ fontSize: "8px" }}
+      <p
+        className="font_10_500 pt-8 pb-4 mr-12 text-darkGrey pr-12 text-right"
+        style={{ fontSize: "8px" }}
+      >
+        Powered by:{" "}
+        <a
+          href="https://gooey.ai"
+          target="_ablank"
+          className="text-darkGrey hover-underline"
         >
-          Powered by:{" "}
-          <a
-            href="https://gooey.ai"
-            target="_ablank"
-            className="text-darkGrey text-underline hover-underline"
-          >
-            gooey.ai
-          </a>
-        </p>
-      </div>
+          gooey.ai
+        </a>
+      </p>
     </div>
   );
 };

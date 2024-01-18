@@ -1,12 +1,12 @@
 @import './_breakpoints.scss';
 @import './_mixins.scss';
 
-$primary: rgba(165,255,238);
-$secondary: rgba(255,240,245);
+$primary: hsl(169, 55%, 82%);
+$secondary: hsl(12, 100%, 97%);
 $dark-grey: #282626;
 $white: #FFF;
 $grey: #f7f3f3;
-$light: #f9f9f9;
+$light: #f0f0f0;
 
 $colors: (
     "primary": $primary,

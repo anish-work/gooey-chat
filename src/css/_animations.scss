@@ -49,10 +49,15 @@
   }
 }
 
+.fade-in-A {
+  animation: fade-in-A 0.3s ease 0.5s ;
+}
+
 .anim-typing {
+  line-height: 150% !important;
   opacity: 1;
   width: 100%;
-  animation: typing 0.3s steps(30), blink .5s step-end infinite alternate;
+  animation: typing 0.35s steps(30), blink .2s step-end infinite alternate;
   overflow: hidden;
 }
 

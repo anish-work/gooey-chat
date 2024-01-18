@@ -3,24 +3,27 @@ import OutgoingMsg from "./OutgoingMsg";
 import PlaceholderMessage, { DEMO_QUERIES } from "./PlaceholderMessage";
 import ResponseLoader from "../Loader";
 import { useResponseContext } from "src/App";
+import Button from "src/components/shared/Button";
 
 const Suggestions = () => {
   const { initializeQuery }: any = useResponseContext();
   return (
-    <div className="mb-80">
-      <p>I can also tell you about</p>
-      <button
+    <div>
+      <p className="font_12_500 mb-8">I can also tell you about</p>
+      <Button
+        className="mb-8"
+        variant="b"
         onClick={() => initializeQuery(DEMO_QUERIES.c)}
-        className="medium mt-10 cr-pointer b-none p-12 button-hover"
       >
         {DEMO_QUERIES.c}
-      </button>
-      <button
+      </Button>
+      <Button
+        className="mt-8"
+        variant="b"
         onClick={() => initializeQuery(DEMO_QUERIES.d)}
-        className="medium mt-10 cr-pointer b-none p-12 button-hover"
       >
         {DEMO_QUERIES.d}
-      </button>
+      </Button>
     </div>
   );
 };
@@ -54,10 +57,10 @@ const Messages = () => {
   const { responses, isSending }: any = useResponseContext();
 
   return (
-    <div className="flex-1 pl-16 pr-16 pt-16 overflow-scroll">
+    <div className="flex-1 bg-white mt-16 mr-16 pl-16 mb-16 pr-16 pt-16 overflow-scroll br-large-right">
       {!responses?.queue?.length && !isSending && <PlaceholderMessage />}
       <Response queue={responses.queue} data={responses.data} />
-      {!isSending && <Suggestions />}
+      {responses?.queue?.length && !isSending && <Suggestions />}
       <ResponseLoader show={isSending} />
     </div>
   );

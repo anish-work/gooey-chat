@@ -5,6 +5,7 @@ import { createContext, useContext, useState } from "react";
 import "./css/root.scss";
 import { v4 as uuidv4 } from "uuid";
 import { sendMessageApi } from "./api/message";
+import clsx from "clsx";
 
 // const DEFAULT_MESSAGES_STATE = {
 //   queue: [],
@@ -145,9 +146,15 @@ function App() {
   return (
     <WidgetContext.Provider value={value}>
       <MessagesContext.Provider value={valueMessages}>
-        <div style={{ height: "100%" }} className="no-scroll-bar">
+        <div
+          className={clsx(
+            "h-100 no-scroll-bar br-large overflow-hidden",
+            widgetState.open && "bg-light"
+          )}
+        >
           {!widgetState.open && <Launcher />}
           {widgetState.open && <Widget />}
+          {/* <Widget /> */}
         </div>
       </MessagesContext.Provider>
     </WidgetContext.Provider>

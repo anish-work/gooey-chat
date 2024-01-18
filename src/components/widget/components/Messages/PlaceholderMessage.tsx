@@ -1,5 +1,6 @@
 import { useResponseContext } from "src/App";
 import "./incoming.scss";
+import Button from "src/components/shared/Button";
 
 export const DEMO_QUERIES = {
   a: "What is the best time to visit Kashmir ?",
@@ -11,26 +12,20 @@ const PlaceholderMessage = () => {
   const { initializeQuery }: any = useResponseContext();
   return (
     <div className="d-flex flex-1 h-100 flex-col">
-      <p className="anim-typing text-darkGrey font_18_600">
-        Howdy! Let me help you plan your trip with ease. <br />
+      <p className="anim-typing text-darkGrey font_16_600 mb-8">
+        Howdy! <br /> Let me help you plan your trip with ease. <br />
         Ask anything or select any option below
         <br />
       </p>
-      <div>
-        <button
-          onClick={() => initializeQuery(DEMO_QUERIES.a)}
-          className="medium mt-10 cr-pointer b-none p-12 button-hover"
-        >
+      <div className="mt-8 mb-8">
+        <Button variant="b" onClick={() => initializeQuery(DEMO_QUERIES.a)}>
           {DEMO_QUERIES.a}
-        </button>
+        </Button>
       </div>
-      <div>
-        <button
-          onClick={() => initializeQuery(DEMO_QUERIES.b)}
-          className="medium mt-10 cr-pointer b-none p-12 button-hover"
-        >
+      <div className="mt-8">
+        <Button variant="b" onClick={() => initializeQuery(DEMO_QUERIES.b)}>
           {DEMO_QUERIES.b}
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -1,10 +1,12 @@
-const IconButton = (props: any) => {
+import { ButtonProps } from "./Button";
+
+const IconButton = ({ className, onClick, ...rest }: ButtonProps) => {
   const btnClasses =
-    "b-none br-small button-hover cr-pointer icon-btn p-12 font_16_500 bg-grey " +
-    props.className;
+    "b-none br-default buttonA button-hover text-white cr-pointer icon-btn p-12 font_16_500 " +
+    className;
   return (
-    <button {...props} className={btnClasses}>
-      {props.children}
+    <button {...rest} className={btnClasses} onMouseDown={onClick}>
+      {rest.children}
     </button>
   );
 };
