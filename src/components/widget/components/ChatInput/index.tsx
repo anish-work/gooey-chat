@@ -47,11 +47,11 @@ const ChatInput = () => {
     setValue("");
   };
 
-  const handleAttachClick = (val: boolean) => {
+  const handleAttachClick = () => {
     const ele: HTMLElement | null = inputRef.current;
     setExpanded((prev) => {
       ele!.style.marginLeft = prev ? "0" : "6px";
-      return val;
+      return !prev;
     });
     return null;
   };

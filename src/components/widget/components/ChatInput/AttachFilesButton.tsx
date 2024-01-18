@@ -11,7 +11,7 @@ const AttachFilesButton = ({
   open = false,
 }: AttachFilesButtonProps) => {
   const handleOpenClick = () => {
-    onAttachClick(open ? false : true);
+    onAttachClick();
   };
 
   return (

@@ -32,7 +32,6 @@ const Header = () => {
 
       <IconButton
         onClick={handleClose}
-        size={24}
         className="pt-12 pb-11 pl-16 pr-16 br-large font_16_600 h-100 hover-grow"
       >
         ❌

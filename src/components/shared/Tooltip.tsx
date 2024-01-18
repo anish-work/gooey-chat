@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 
 interface TooltipProps {
   open: boolean;
@@ -9,14 +9,14 @@ interface TooltipProps {
 
 const Tooltip = ({
   open,
-  position,
-  fadeOutDelay = "2s",
+  // position,
+  // fadeOutDelay = "2s",
   children,
 }: TooltipProps) => {
-  const [show, setShow] = useState(false);
-  const ElemRef = useRef(null);
+  // const [show, setShow] = useState(false);
+  // const ElemRef = useRef(null);
 
-  const closeTooptip = () => {};
+  // const closeTooptip = () => {};
 
   useEffect(() => {
     // if (open) {
