@@ -1,19 +1,14 @@
 import brandLogo from "src/assets/brand-logo.svg";
 import "./header.scss";
 import IconButton from "src/components/shared/IconButton";
-import { useWidgetContext } from "src/contexts/hooks";
+import { useSystemContext } from "src/contexts/hooks";
 
 // interface HeaderProps {
 //   onViewChange: object | null;
 //   viewState: object | null;
 // }
 const Header = () => {
-  const { toggleWidget }: any = useWidgetContext();
-
-  const handleClose = () => {
-    window.parent.postMessage({ type: "DOM_MINIMIZE_WIDGET" }, "*");
-    toggleWidget(false);
-  };
+  const { toggleWidget } = useSystemContext();
 
   return (
     <div className="p-16 bg-white br-large b-1 gooeyChat-widget-headerContainer d-flex justify-between align-center">
@@ -31,7 +26,7 @@ const Header = () => {
       </div>
 
       <IconButton
-        onClick={handleClose}
+        onClick={toggleWidget}
         className="pt-12 pb-11 pl-16 pr-16 br-large font_16_600 h-100 hover-grow"
       >
         ❌

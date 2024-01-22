@@ -7,14 +7,6 @@ import ChatInput from "./components/ChatInput";
 // }
 
 const Widget = () => {
-  // const [viewState, setViewState] = useState<ViewState>({
-  //   view: "new",
-  // });
-
-  // const handleViewChange = (val: "history" | "new") => {
-  //   setViewState((prev) => ({ ...prev, view: val }));
-  // };
-
   return (
     <div
       id="gooeyChat-widget-container"

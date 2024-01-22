@@ -1,42 +1,23 @@
 import "./App.css";
 import Widget from "./components/widget";
 import Launcher from "./components/launcher";
-import { createContext, useState } from "react";
 import "./css/root.scss";
 import clsx from "clsx";
-import MessagesContextProvider from "./contexts/MessagesContext";
-
-export const WidgetContext = createContext({});
+import { useSystemContext } from "./contexts/hooks";
 
 function App() {
-  const [widgetState, setWidgetState] = useState({
-    open: false,
-  });
-
-  const toggleWidget = (val: boolean) => {
-    setWidgetState((prev) => ({ ...prev, open: val }));
-  };
-
-  const value = {
-    toggleWidget,
-    widgetState,
-  };
-
+  const { open } = useSystemContext();
   return (
-    <WidgetContext.Provider value={value}>
-      <MessagesContextProvider>
-        <div
-          className={clsx(
-            "h-100 no-scroll-bar br-large overflow-hidden",
-            widgetState.open && "bg-light"
-          )}
-        >
-          {!widgetState.open && <Launcher />}
-          {widgetState.open && <Widget />}
-          {/* <Widget /> */}
-        </div>
-      </MessagesContextProvider>
-    </WidgetContext.Provider>
+    <div
+      className={clsx(
+        "h-100 no-scroll-bar br-large overflow-hidden",
+        open && "bg-light"
+      )}
+    >
+      {!open && <Launcher />}
+      {open && <Widget />}
+      {/* <Widget /> */}
+    </div>
   );
 }
 

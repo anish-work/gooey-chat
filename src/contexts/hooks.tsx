@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { MessagesContext } from "./MessagesContext";
-import { WidgetContext } from "src/App";
+import { SystemContext } from "./SystemContext";
 
-export const useResponseContext = () => useContext(MessagesContext);
-export const useWidgetContext = () => useContext(WidgetContext);
+export const useMessagesContext = () => useContext(MessagesContext);
+export const useSystemContext = () => useContext(SystemContext);

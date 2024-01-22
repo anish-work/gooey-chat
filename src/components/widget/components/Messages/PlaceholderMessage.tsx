@@ -1,4 +1,4 @@
-import { useResponseContext } from "src/contexts/hooks";
+import { useMessagesContext } from "src/contexts/hooks";
 import "./incoming.scss";
 import Button from "src/components/shared/Button";
 
@@ -9,7 +9,7 @@ export const DEMO_QUERIES = {
   d: "What are places to visit as a tourist in France ?",
 };
 const PlaceholderMessage = () => {
-  const { initializeQuery }: any = useResponseContext();
+  const { initializeQuery }: any = useMessagesContext();
   return (
     <div className="d-flex flex-1 h-100 flex-col">
       <p className="anim-typing text-darkGrey font_16_600 mb-8">

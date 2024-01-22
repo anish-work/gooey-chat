@@ -1,32 +1,9 @@
-import { useCallback, useEffect } from "react";
 import brandLogo from "../../assets/brand-logo.svg";
 import "./launcher.scss";
-import { useWidgetContext } from "src/contexts/hooks";
-
+import { useSystemContext } from "src/contexts/hooks";
 
 const Launcher = () => {
-  const { toggleWidget, widgetState }: any = useWidgetContext();
-
-  const receiveMessage = (event: any) => {
-    console.log(event.data.type, ">>REC");
-    if (event && event.data.type === "DOM_MAXIMIZE_WIDGET_DONE")
-      toggleWidget(true);
-    if (event && event.data.type === "DOM_MINIMIZE_WIDGET_DONE")
-      toggleWidget(false);
-  };
-
-  const sendMessage = useCallback(() => {
-    if (!widgetState.open)
-      return window.parent.postMessage({ type: "DOM_MAXIMIZE_WIDGET" }, "*");
-    return window.parent.postMessage({ type: "DOM_MINIMIZE_WIDGET" }, "*");
-  }, [widgetState.open]);
-
-  useEffect(() => {
-    window.addEventListener("message", receiveMessage);
-    return () => window.removeEventListener("message", receiveMessage);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+  const { toggleWidget } = useSystemContext();
   return (
     <div
       style={{
@@ -36,7 +13,7 @@ const Launcher = () => {
       className="pos-absolute pb-16 pr-16"
     >
       <button
-        onClick={sendMessage}
+        onClick={toggleWidget}
         className="gooeyChat-launchButton hover-grow cr-pointer br-large bx-shadowA bg-darkGrey button-hover"
       >
         <img src={brandLogo} className="logo react" alt="React logo" />

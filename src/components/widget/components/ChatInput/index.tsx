@@ -4,12 +4,12 @@ import { useEffect, useRef, useState } from "react";
 
 import AttachFilesButton from "./AttachFilesButton";
 import clsx from "clsx";
-import { useResponseContext } from "src/contexts/hooks";
+import { useMessagesContext } from "src/contexts/hooks";
 
 const CHAT_INPUT_ID = "gooeyChat-input";
 
 const ChatInput = () => {
-  const { initializeQuery }: any = useResponseContext();
+  const { initializeQuery }: any = useMessagesContext();
   const [value, setValue] = useState("");
   // const [file, setFile] = useState("");
 

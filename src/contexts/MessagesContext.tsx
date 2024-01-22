@@ -2,11 +2,6 @@ import { createContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { sendMessageApi } from "../api/message";
 
-// const DEFAULT_MESSAGES_STATE = {
-//   queue: [],
-//   data: {},
-// };
-
 interface IncomingMsg {
   input_prompt: string;
 }
@@ -72,27 +67,19 @@ const createNewQuery = (query: string) => {
 
 export const MessagesContext = createContext({});
 const MessagesContextProvider = (props: any) => {
-  const [messages, setMessages] = useState({});
+  const [messages, setMessages] = useState(new Map());
   const [isSending, setIsSendingMessage] = useState(false);
-  const [history, setHistory] = useState([""]);
 
   const initializeQuery = (query: string) => {
     setIsSendingMessage(true);
     const newQuery = createNewQuery(query);
-    setHistory((prev) => [...prev, query]);
     sendPrompt({ input_prompt: query });
     addResponse(newQuery);
   };
 
   const addResponse = (response: any) => {
     setMessages((prev: any) => {
-      const que = prev.queue ? [...prev.queue, response.id] : [response.id];
-      const data = prev.data || {};
-      data[response.id] = response;
-      return {
-        queue: que,
-        data,
-      };
+      return new Map(prev.set(response.id, response));
     });
   };
 
@@ -115,12 +102,19 @@ const MessagesContextProvider = (props: any) => {
     }
   };
 
+  const preLoadData = (data: any) => {
+    const newMap = new Map();
+    data.forEach((obj: any) => {
+      newMap.set(obj.id, { ...obj });
+    });
+    setMessages(newMap);
+  };
   const valueMessages = {
     sendPrompt,
-    responses: messages,
+    messages,
     isSending,
     initializeQuery,
-    history,
+    preLoadData,
   };
 
   return (

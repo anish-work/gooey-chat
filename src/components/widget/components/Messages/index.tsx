@@ -4,10 +4,10 @@ import PlaceholderMessage, { DEMO_QUERIES } from "./PlaceholderMessage";
 import ResponseLoader from "../Loader";
 
 import Button from "src/components/shared/Button";
-import { useResponseContext } from "src/contexts/hooks";
+import { useMessagesContext } from "src/contexts/hooks";
 
 const Suggestions = () => {
-  const { initializeQuery }: any = useResponseContext();
+  const { initializeQuery }: any = useMessagesContext();
   return (
     <div className="pb-16">
       <p className="font_12_500 mb-12">I can also tell you about</p>
@@ -30,14 +30,14 @@ const Suggestions = () => {
 };
 
 const Response = (props: any) => {
-  const data = props.data;
   const que = props.queue;
+  const msgs = props.data;
 
   if (!que) return null;
   return (
     <div>
       {que.map((id: string) => {
-        const responseData = data[id];
+        const responseData = msgs.get(id);
         const role = responseData.role;
 
         return (
@@ -55,13 +55,13 @@ const Response = (props: any) => {
 };
 
 const Messages = () => {
-  const { responses, isSending }: any = useResponseContext();
+  const { messages, isSending }: any = useMessagesContext();
 
   return (
     <div className="flex-1 bg-white mt-16 mr-16 mb-16 p-16  overflow-scroll br-large-right">
-      {!responses?.queue?.length && !isSending && <PlaceholderMessage />}
-      <Response queue={responses.queue} data={responses.data} />
-      {responses?.queue?.length && !isSending && <Suggestions />}
+      {!messages?.size && !isSending && <PlaceholderMessage />}
+      <Response queue={Array.from(messages.keys())} data={messages} />
+      {!!messages?.size && !isSending && <Suggestions />}
       <ResponseLoader show={isSending} />
     </div>
   );
