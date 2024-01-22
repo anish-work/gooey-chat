@@ -1,7 +1,8 @@
 import { useCallback, useEffect } from "react";
 import brandLogo from "../../assets/brand-logo.svg";
 import "./launcher.scss";
-import { useWidgetContext } from "../contexts/widgetContext";
+import { useWidgetContext } from "src/contexts/hooks";
+
 
 const Launcher = () => {
   const { toggleWidget, widgetState }: any = useWidgetContext();

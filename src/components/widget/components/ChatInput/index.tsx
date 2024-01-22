@@ -1,9 +1,10 @@
 import IconButton from "src/components/shared/IconButton";
 import "./chatInput.scss";
 import { useEffect, useRef, useState } from "react";
-import { useResponseContext } from "src/App";
+
 import AttachFilesButton from "./AttachFilesButton";
 import clsx from "clsx";
+import { useResponseContext } from "src/contexts/hooks";
 
 const CHAT_INPUT_ID = "gooeyChat-input";
 

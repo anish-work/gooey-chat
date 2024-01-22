@@ -2,8 +2,9 @@ import IncomingMsg from "./IncomingMsg";
 import OutgoingMsg from "./OutgoingMsg";
 import PlaceholderMessage, { DEMO_QUERIES } from "./PlaceholderMessage";
 import ResponseLoader from "../Loader";
-import { useResponseContext } from "src/App";
+
 import Button from "src/components/shared/Button";
+import { useResponseContext } from "src/contexts/hooks";
 
 const Suggestions = () => {
   const { initializeQuery }: any = useResponseContext();

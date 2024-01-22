@@ -1,4 +1,4 @@
-import { useResponseContext } from "src/App";
+import { useResponseContext } from "src/contexts/hooks";
 import "./incoming.scss";
 import Button from "src/components/shared/Button";
 
