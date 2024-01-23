@@ -14,7 +14,7 @@ const getMode = (state: SystemContextState) => {
 };
 
 const SystemContextProvider = (props: any) => {
-  const { preLoadData, messages, flushData } = useMessagesContext();
+  const { preLoadData, messages, flushData }: any = useMessagesContext();
   const [widgetState, setWidgetState] = useState<SystemContextState>({
     open: false,
     isInitialized: false,

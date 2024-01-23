@@ -65,7 +65,8 @@ const createNewQuery = (query: string) => {
   };
 };
 
-export const MessagesContext = createContext({});
+export const MessagesContext: any = createContext({});
+
 const MessagesContextProvider = (props: any) => {
   const [messages, setMessages] = useState(new Map());
   const [isSending, setIsSendingMessage] = useState(false);

@@ -3,7 +3,7 @@ import "./launcher.scss";
 import { useSystemContext } from "src/contexts/hooks";
 
 const Launcher = () => {
-  const { toggleWidget } = useSystemContext();
+  const { toggleWidget }: any = useSystemContext();
   return (
     <div
       style={{

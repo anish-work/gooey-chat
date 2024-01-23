@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { useSystemContext } from "./contexts/hooks";
 
 function App() {
-  const { open } = useSystemContext();
+  const { open }: any = useSystemContext();
   return (
     <div
       className={clsx(

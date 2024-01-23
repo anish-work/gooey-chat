@@ -8,7 +8,7 @@ import { useSystemContext } from "src/contexts/hooks";
 //   viewState: object | null;
 // }
 const Header = () => {
-  const { toggleWidget } = useSystemContext();
+  const { toggleWidget }: any = useSystemContext();
 
   return (
     <div className="p-16 bg-white br-large b-1 gooeyChat-widget-headerContainer d-flex justify-between align-center">
