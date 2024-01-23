@@ -14,7 +14,7 @@ const getMode = (state: SystemContextState) => {
 };
 
 const SystemContextProvider = (props: any) => {
-  const { preLoadData, messages } = useMessagesContext();
+  const { preLoadData, messages, flushData } = useMessagesContext();
   const [widgetState, setWidgetState] = useState<SystemContextState>({
     open: false,
     isInitialized: false,
@@ -46,6 +46,7 @@ const SystemContextProvider = (props: any) => {
       return window.parent.postMessage({ type: "DOM_MAXIMIZE_WIDGET" }, "*");
     }
     const newData = Array.from(messages.values());
+    flushData();
     return window.parent.postMessage(
       {
         type: "DOM_MINIMIZE_WIDGET",
@@ -53,7 +54,7 @@ const SystemContextProvider = (props: any) => {
       },
       "*"
     );
-  }, [widgetState.open, messages]);
+  }, [widgetState.open, messages, flushData]);
 
   useEffect(() => {
     window.addEventListener("message", receiveMessage);

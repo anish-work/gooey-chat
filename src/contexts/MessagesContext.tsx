@@ -109,12 +109,17 @@ const MessagesContextProvider = (props: any) => {
     });
     setMessages(newMap);
   };
+
+  const flushData = () => {
+    setMessages(new Map());
+  };
   const valueMessages = {
     sendPrompt,
     messages,
     isSending,
     initializeQuery,
     preLoadData,
+    flushData,
   };
 
   return (
