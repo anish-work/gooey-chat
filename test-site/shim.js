@@ -1,6 +1,7 @@
 const MAX_INDEX = "9999";
 // const IFRAME_URL = "http://192.168.1.75:5173/";
-const IFRAME_URL = "http://192.168.1.9:5173/";
+// const IFRAME_URL = "http://192.168.1.9:5173/";
+const IFRAME_URL = "https://gooeychat-beta.netlify.app";
 const IFRAME_ID = "gooey-chat-iframe";
 const WRAPPER_ID = "gooey-chat-wrapper";
 
