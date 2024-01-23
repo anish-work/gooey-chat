@@ -1,0 +1,631 @@
+:root {
+  --black: rgb(34, 34, 34);
+  --white: rgb(255, 255, 255);
+  --grey: grey;
+  --verylightgrey: rgb(247, 247, 247);
+  --red: #ff385c;
+  --container-max-width: 1600px;
+}
+
+html {
+  /* border-box box model allows us to add padding and border to our elements without increasing their size */
+  box-sizing: border-box;
+  /* A system font stack so things load nice and quick! */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 10px;
+  color: var(--black);
+}
+
+/* We inherit box-sizing: border-box; from our <html> selector. Apparently this is a bit better than applying box-sizing: border-box; directly to the * selector */
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-size: 14px;
+  margin: 0;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: 600;
+  margin: 0;
+}
+
+a {
+  color: var(--black);
+}
+
+img {
+  width: 100%;
+}
+
+.content {
+  max-width: var(--container-max-width);
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+.banner {
+  text-align: center;
+  padding: 6px;
+}
+
+.top {
+  height: 675px;
+  background: var(--black) url(/assets/images/treehouse.jpg);
+  background-size: cover;
+  background-position: center center;
+}
+
+.top__content {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  color: var(--white);
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+.nav {
+  display: grid;
+  grid-template-columns: 250px 1fr 250px;
+  min-height: 80px;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 200;
+}
+
+.nav > * {
+  display: flex;
+  gap: 30px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.nav__logo,
+.nav__center,
+.nav__right {
+  display: flex;
+  align-items: center;
+}
+
+.nav__center-2 {
+  display: none;
+}
+
+.nav__logo {
+  gap: 5px;
+}
+
+.nav__logo h2 {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+svg {
+  fill: white;
+}
+
+.nav__center {
+  justify-content: center;
+}
+
+.nav__right {
+  justify-content: end;
+}
+
+.nav__signin {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  background: var(--white);
+  padding: 5px 5px 5px 12px;
+  border-radius: 21px;
+}
+
+.nav__user-icon {
+  background: var(--grey);
+  padding: 7px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-content: center;
+}
+
+.search {
+  display: grid;
+  grid-template-columns: 1fr repeat(3, minmax(100px, 175px)) auto;
+  color: var(--black);
+  background: var(--white);
+  border-radius: 32px;
+  padding: 10px;
+  max-width: 850px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.search__item {
+  padding: 0 24px;
+  border-right: 1px solid lightgrey;
+}
+
+.search__item > * {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.search__item:nth-last-child(2) {
+  border: none;
+}
+
+.search__item-title {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.search__item-desc {
+  font-size: 14px;
+  margin-top: 2px;
+  font-weight: 100;
+  color: var(--grey);
+}
+
+.search__button {
+  background: var(--red);
+  padding: 15px;
+  border-radius: 50%;
+}
+
+.explore {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  max-width: 300px;
+}
+
+.explore__header {
+  margin-bottom: 12px;
+}
+
+.explore__description {
+  margin-bottom: 16px;
+}
+
+.suggestions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(210px, 1fr));
+  grid-gap: 16px;
+  margin: 30px auto;
+  padding-bottom: 40px;
+}
+
+.suggestion {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.suggestion__content {
+  padding: 12px 16px;
+}
+
+.suggestion__title {
+  font-size: 18px;
+}
+
+.suggestion__description {
+  margin-top: 4px;
+  color: var(--grey);
+}
+
+.experiences {
+  background: black;
+}
+
+.experiences__content {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-gap: 32px;
+  color: var(--white);
+  padding-top: 64px;
+  padding-bottom: 80px;
+}
+
+.experiences__header {
+  display: flex;
+}
+
+.experiences__header-content {
+  flex: 1;
+}
+
+.experiences__button-2 {
+  display: none;
+}
+
+.experiences__description {
+  margin-top: 4px;
+  font-size: 16px;
+  font-weight: 100;
+}
+
+.experiences__featured {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(250px, 1fr));
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 15px;
+  grid-template-areas:
+    "bill bill sri  buenos"
+    "bill bill dive dive";
+}
+
+.experience {
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+.experience:nth-child(1) {
+  grid-area: bill;
+}
+
+.experience:nth-child(2) {
+  grid-area: sri;
+}
+
+.experience:nth-child(3) {
+  grid-area: buenos;
+}
+
+.experience:nth-child(4) {
+  grid-area: dive;
+}
+
+.experience__title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--black);
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  padding: 24px 16px;
+  font-size: 16px;
+}
+
+.lighthouse {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 40px;
+  margin: 80px auto;
+}
+
+.lighthouse__header {
+  margin-bottom: 20px;
+  max-width: 460px;
+}
+
+.lighthouse__description {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 200;
+  max-width: 460px;
+}
+
+.lighthouse__button-2 {
+  display: none;
+}
+
+.destinations {
+  margin: 48px auto;
+}
+
+.destinations__header {
+  margin-bottom: 25px;
+}
+
+.destinations__header h3 {
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.destinations__tabs {
+  display: flex;
+  gap: 30px;
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 15px;
+  font-weight: 400;
+  color: var(--grey);
+}
+
+.destinations__tab:nth-child(1) {
+  padding-bottom: 15px;
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--black);
+  color: var(--black);
+}
+
+.destinations__places {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(120px, 1fr));
+  grid-gap: 32px;
+  font-weight: 200;
+}
+
+.destinations__state {
+  color: var(--grey);
+}
+
+.footer {
+  background: var(--verylightgrey);
+  border-top: 1px solid lightgrey;
+}
+
+.footer__links {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(230px, 1fr));
+  grid-gap: 20px;
+  padding: 48px 0;
+}
+
+.footer__links h4 {
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.footer__links ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer__links li {
+  margin-top: 16px;
+  font-weight: 200;
+}
+
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid lightgrey;
+  padding: 24px 0;
+}
+
+.footer__boring,
+.footer__locales,
+.footer__social {
+  display: flex;
+  align-items: center;
+}
+
+.footer__boring {
+  flex: 1;
+  margin-left: 10px;
+  gap: 10px;
+}
+
+.footer__locales,
+.footer__social {
+  gap: 20px;
+}
+
+.footer__social {
+  margin-left: 32px;
+}
+
+/* buttons */
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  border: none;
+  background: var(--white);
+}
+
+.btn--black {
+  background: black;
+  color: var(--white);
+  border: 1px solid white;
+}
+
+.btn--white {
+  background: transparent;
+  color: var(--black);
+  border: 1px solid var(--black);
+}
+
+@media (max-width: 1127px) {
+  .content {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .nav__logo-name {
+    display: none;
+  }
+  .experiences__header h1,
+  .lighthouse__header h1 {
+    font-size: 26px;
+  }
+  .experiences__featured {
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+    grid-template-areas:
+      "bill bill sri"
+      "bill bill buenos";
+  }
+  .experience:nth-child(4) {
+    display: none;
+  }
+  .destinations__places {
+    grid-template-columns: repeat(3, minmax(120px, 1fr));
+  }
+  .lighthouse__description {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .footer__links {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, auto);
+    padding: 40px 0;
+  }
+  .footer__links > *:not(:last-child) {
+    padding-bottom: 24px;
+    border-bottom: 1px solid lightgrey;
+  }
+  .footer__links h4 {
+    margin: 0;
+  }
+  .footer__links ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .footer__links li {
+    margin-top: 12px;
+  }
+  .footer__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .footer__boring {
+    margin-left: 0;
+  }
+  .footer__boring div:first-child {
+    display: none;
+  }
+  .footer__locales {
+    order: -1;
+    margin-bottom: 16px;
+  }
+  .footer__social {
+    display: none;
+  }
+}
+
+@media (max-width: 949px) {
+  .nav {
+    display: flex;
+  }
+  .nav__logo {
+    flex: 1;
+  }
+  .nav__center {
+    display: none;
+  }
+  /* todo: display `nav__center-2` on new line */
+}
+
+@media (max-width: 743px) {
+  .content {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .nav {
+    display: none;
+  }
+  .search {
+    margin: 16px 0;
+    display: flex;
+  }
+  .search__checkin,
+  .search__checkout,
+  .search__guests,
+  .search__button,
+  .search__location > .search__item-title {
+    display: none;
+  }
+  .search__location {
+    border: none;
+  }
+  .search__location > .search__item-desc {
+    font-size: 16px;
+  }
+  .explore {
+    justify-self: center;
+    align-items: center;
+  }
+  .explore__header h1 {
+    font-size: 26px;
+  }
+  .explore__description {
+    font-size: 12px;
+    text-align: center;
+    max-width: 180px;
+  }
+  .suggestions {
+    display: grid;
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-padding: 0 24px;
+    grid-template-columns: repeat(3, 272px);
+  }
+  .experiences__header h1,
+  .lighthouse__header h1 {
+    font-size: 22px;
+    font-weight: 400;
+  }
+  .experiences__content {
+    padding: 40px 24px;
+  }
+  .experiences__button {
+    display: none;
+  }
+  .experiences__button-2 {
+    display: flex;
+  }
+  .experiences__featured {
+    grid-template-columns: repeat(4, 90%);
+    grid-template-rows: auto;
+    grid-template-areas: "bill sri buenos dive";
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .experience:nth-child(4) {
+    display: block;
+  }
+  .experience img {
+    object-fit: cover;
+    height: 100%;
+  }
+  .destinations__tabs {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .destinations__places {
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+  }
+  .lighthouse {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, auto);
+    grid-gap: 20px;
+    margin: 32px 0;
+  }
+  .lighthouse__header {
+    margin-bottom: 0;
+  }
+  .lighthouse__button {
+    display: none;
+  }
+  .lighthouse__button-2 {
+    display: flex;
+    justify-self: start;
+  }
+  .footer__links ul {
+    grid-template-columns: 1fr;
+  }
+  .footer__links li {
+    margin-top: 12px;
+  }
+  .footer__bottom {
+    align-items: start;
+  }
+}
