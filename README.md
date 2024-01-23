@@ -1,6 +1,8 @@
 # GooeyAI Chat Widget
 
 React was setup using Vite + Typescript
+
+
 test-site folder contains the demo site
 
 
