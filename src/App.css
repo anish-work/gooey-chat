@@ -5,6 +5,9 @@
   letter-spacing: 1px;
   color:#000
 }
+p {
+  color: unset
+}
 a {
   text-decoration: none;
 }

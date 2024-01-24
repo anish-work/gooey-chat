@@ -10,6 +10,7 @@
 }
 
 //  Hover Classes
+
 .hover-grow:hover {
   transition: transform 0.1s ease-in;
   transform: scale(1.2);
@@ -18,6 +19,11 @@
 .hover-grow:active {
   transition: transform 0.1s ease-in;
   transform: scale(1);
+}
+
+.hover-bg-primary:hover {
+  background-color: $primary;
+  color: $dark-grey
 }
 
 .buttonA {
@@ -137,6 +143,14 @@
 
 .b-1 {
   border: 1px solid #ddd;
+}
+
+.b-btm-1 {
+  border-bottom: 1px solid #ddd;
+}
+
+.b-top-1 {
+  border-top: 1px solid #ddd;
 }
 
 .b-none {

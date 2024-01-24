@@ -15,6 +15,7 @@ const Launcher = () => {
       <button
         onClick={toggleWidget}
         className="gooeyChat-launchButton hover-grow cr-pointer br-large bx-shadowA bg-darkGrey button-hover"
+        style={{ height: "56px", width: "56px" }}
       >
         <img src={brandLogo} className="logo react" alt="React logo" />
       </button>
