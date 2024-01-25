@@ -11,35 +11,37 @@ const WRAPPER_BASE_STYLES = `
   z-index: ${MAX_INDEX} !important;
   min-height: 96px !important;
   min-width: 100px !important;
+  border-radius: 16px;
 `;
 
-const WRAPPER_STYLES_MOBILE = WRAPPER_BASE_STYLES + " height:100%; width:100%; top:0; left:0";
-const WRAPPER_STYLES_DESKTOP = 
-  WRAPPER_BASE_STYLES + 
-    'width: 100px !important; right: 0 !important; bottom: 0 !important; background: none transparent !important;';
+const WRAPPER_STYLES_MOBILE =
+  WRAPPER_BASE_STYLES + " height:100%; width:100%; top:0; left:0";
+const WRAPPER_STYLES_DESKTOP =
+  WRAPPER_BASE_STYLES +
+  "width: 100px !important; right: 0 !important; bottom: 0 !important; background: none transparent !important;";
 
 const checkWrapper = (wrp) => {
-  if(wrp) return undefined;
+  if (wrp) return undefined;
   throw new Error("Gooey Chat - Wrapper element not found");
 };
 
 const markEventDone = (eventType) => eventType + "_DONE";
 
 const DomEventTypes = {
-  "DOM_MAXIMIZE_WIDGET": function (isMobile) {
-    if(!document) throw new Error("DOM not found");
+  DOM_MAXIMIZE_WIDGET: function (isMobile) {
+    if (!document) throw new Error("DOM not found");
     const wrapper = document.getElementById(WRAPPER_ID);
     checkWrapper(wrapper);
-    if (isMobile) return wrapper.setAttribute('style', WRAPPER_STYLES_MOBILE);
+    if (isMobile) return wrapper.setAttribute("style", WRAPPER_STYLES_MOBILE);
     // Set desktop expanded dims
-    wrapper.style.height = '700px';
-    wrapper.style.width = '560px';
+    wrapper.style.height = "700px";
+    wrapper.style.width = "460px";
   },
-  "DOM_MINIMIZE_WIDGET": function() {
-    if(!document) throw new Error("DOM not found");
+  DOM_MINIMIZE_WIDGET: function () {
+    if (!document) throw new Error("DOM not found");
     const wrapper = document.getElementById(WRAPPER_ID);
     wrapper.setAttribute("style", WRAPPER_STYLES_DESKTOP);
-  }
+  },
 };
 
 const StoreEventTypes = {
