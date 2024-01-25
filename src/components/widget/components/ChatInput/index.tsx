@@ -67,7 +67,7 @@ const ChatInput = () => {
   }, [showSend, isExpanded]);
 
   return (
-    <div className="gooeyChat-chat-input br-large text-left d-flex flex-col justify-start">
+    <div className="gooeyChat-chat-input br-large text-left d-flex flex-col justify-start flex-1">
       {/* Typing area */}
 
       {/* In line input */}

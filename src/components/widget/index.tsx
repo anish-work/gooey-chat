@@ -11,16 +11,25 @@ import AppLayout from "../shared/Layout/AppLayout";
 
 const Widget = () => {
   const [view, setView] = useState("home");
+  const handleChangeView = (val: string) => {
+    setView(val);
+  };
   return (
     <div
       id="gooeyChat-widget-container"
       className="br-large d-flex flex-col pos-relative overflow-hidden"
     >
-      <AppLayout>
-        {/* <Header />
-        <Messages />
-        <ChatInput /> */}
-        <div>{view === "home" && <Home />}</div>
+      <AppLayout onViewChange={handleChangeView} view={view}>
+        <>
+          {view === "messages" ? (
+            <div className="flex-1 d-flex flex-col bg-primary">
+              <Header onViewChange={handleChangeView} />
+              <Messages />
+              <ChatInput />
+            </div>
+          ) : null}
+          <div>{view === "home" && <Home />}</div>
+        </>
       </AppLayout>
     </div>
   );

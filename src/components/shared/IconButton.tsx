@@ -1,7 +1,12 @@
 import clsx from "clsx";
 import { ButtonProps } from "./Button";
 
-const IconButton = ({ className, variant, onClick, ...rest }: ButtonProps) => {
+const IconButton = ({
+  className,
+  variant = "a",
+  onClick,
+  ...rest
+}: ButtonProps) => {
   const btnClasses = clsx(
     `button${variant?.toUpperCase()}`,
     "b-none br-default button-hover text-white cr-pointer icon-btn p-12 font_16_500 ",
