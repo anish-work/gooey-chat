@@ -15,14 +15,17 @@ const Widget = () => {
     setView(val);
   };
   return (
-    <div
+    <main
       id="gooeyChat-widget-container"
-      className="br-large d-flex flex-col pos-relative overflow-hidden"
+      className="br-large flex-1 d-flex flex-col justify-start pos-relative overflow-hidden"
     >
       <AppLayout onViewChange={handleChangeView} view={view}>
         <>
           {view === "messages" ? (
-            <div className="flex-1 d-flex flex-col bg-primary">
+            <div
+              className="pos-relative d-flex flex-col flex-1"
+              style={{ maxHeight: "100%" }}
+            >
               <Header onViewChange={handleChangeView} />
               <Messages />
               <ChatInput />
@@ -31,7 +34,7 @@ const Widget = () => {
           <div>{view === "home" && <Home />}</div>
         </>
       </AppLayout>
-    </div>
+    </main>
   );
 };
 

@@ -11,7 +11,7 @@ type Props = {
 };
 
 const getHeightClass = (view: string | undefined) => {
-  if (view === "messages") return "header-height-1";
+  if (view === "messages") return "header-height-full";
   return "header-height-0";
 };
 
@@ -22,7 +22,7 @@ const AppLayout = ({
 }: Props) => {
   const headerHeightClass = useMemo(() => getHeightClass(view), [view]);
   return (
-    <div className="layout-container h-100 d-flex flex-col ">
+    <main className="layout-container h-100 d-flex flex-col">
       <div
         className={clsx(
           "bg-primary pos-absolute w-100 layout-header",
@@ -30,20 +30,27 @@ const AppLayout = ({
         )}
       />
       <>
-        <div className="flex-1 d-flex flex-col">
+        <div
+          style={{ flex: "1 1 0%", overflowY: "hidden" }}
+          className="pos-relative d-flex flex-col"
+        >
           <>{children}</>
         </div>
 
         {/* Nav Footer */}
         {view === "home" && (
-          <div className="pos-absolute bg-white nav-footer-container w-100 d-flex">
+          <div className="bg-white nav-footer-container w-100 d-flex">
             <div
               onClick={() => onViewChange("home")}
-              className={
-                "d-flex flex-col align-center pt-12 pb-12 hover-bg-primary hover- flex-1 cr-pointer"
-              }
+              className={clsx(
+                "d-flex flex-col align-center pt-12 pb-12  flex-1 cr-pointer",
+                view === "home" ? "bg-darkGrey text-white" : "hover-bg-primary"
+              )}
             >
-              <HomeIcon style={{ width: "24px" }} />
+              <HomeIcon
+                style={{ width: "24px" }}
+                className={clsx(view === "home" && "stroke-white")}
+              />
               <p className="mt-6">Home</p>
             </div>
             <div
@@ -56,7 +63,7 @@ const AppLayout = ({
           </div>
         )}
       </>
-    </div>
+    </main>
   );
 };
 

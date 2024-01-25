@@ -11,18 +11,17 @@ export const DEMO_QUERIES = {
 const PlaceholderMessage = () => {
   const { initializeQuery }: any = useMessagesContext();
   return (
-    <div className="d-flex flex-1 h-100 flex-col">
+    <div className="no-scroll-bar">
       <p className="anim-typing text-darkGrey font_16_600 mb-8">
         Howdy! <br /> Let me help you plan your trip with ease. <br />
-        Ask anything or select any option below
-        <br />
+        Ask anything or select any option below <br />
       </p>
-      <div className="mt-8 mb-8">
+      <div className="mt-16 mb-8">
         <Button variant="b" onClick={() => initializeQuery(DEMO_QUERIES.a)}>
           {DEMO_QUERIES.a}
         </Button>
       </div>
-      <div className="mt-8">
+      <div className="mt-16">
         <Button variant="b" onClick={() => initializeQuery(DEMO_QUERIES.b)}>
           {DEMO_QUERIES.b}
         </Button>

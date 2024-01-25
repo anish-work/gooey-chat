@@ -3,7 +3,8 @@
   box-sizing: border-box;
   font-family: "Sen", arial ;
   letter-spacing: 1px;
-  color:#000
+  color:#000;
+  -webkit-font-smoothing:antialiased
 }
 p {
   color: unset
@@ -15,12 +16,5 @@ body {
   overflow: hidden;
   background: none transparent !important;
   margin: 0;
-  height: 100%;
 }
 
-#root {
-  height: 100%;
-}
-html {
-  height: 100%;
-}

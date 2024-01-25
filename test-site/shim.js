@@ -34,7 +34,7 @@ const DomEventTypes = {
     checkWrapper(wrapper);
     if (isMobile) return wrapper.setAttribute("style", WRAPPER_STYLES_MOBILE);
     // Set desktop expanded dims
-    wrapper.style.height = "700px";
+    wrapper.style.height = "min(704px, 100% - 114px)";
     wrapper.style.width = "460px";
   },
   DOM_MINIMIZE_WIDGET: function () {
@@ -45,33 +45,29 @@ const DomEventTypes = {
 };
 
 const StoreEventTypes = {
-  "STORE_SAVE" : function (payload) {
-    if(!document) throw new Error("DOM not found");
+  STORE_SAVE: function (payload) {
+    if (!document) throw new Error("DOM not found");
     window.localStorage.setItem(payload.key, payload.value);
   },
-}
+};
 
-function switchView(toMobile = false, wrapper){
+function switchView(toMobile = false, wrapper) {
   checkWrapper(wrapper);
-  if(!this.isExpanded) return; // change only when expanded
-  if(!toMobile){
-    this.wrapper.setAttribute('style', WRAPPER_STYLES);
-    console.log("switched to mobile");
-  } else {
+  if (!this.isExpanded) return; // change only when expanded
+  if (!toMobile) {
     this.wrapper.setAttribute("style", WRAPPER_STYLES_MOBILE);
     console.log("switched to mobile");
-  } 
-};
+  }
+}
 
 var VIEW_PORTS = {
   xs: 0,
   sm: 640,
   md: 1100,
-  lg: 1440
-}
+  lg: 1440,
+};
 
 class GooeyChat {
-
   init() {
     this.initFrame();
     this.initWrapper();
@@ -79,11 +75,11 @@ class GooeyChat {
     this.mountUpIframe();
   }
 
-  adaptViewport(mq){
-    if(mq.matches){
+  adaptViewport(mq) {
+    if (mq.matches) {
       this.isMobile = false;
       // Desktop View - //  Do nothing as it loads for the desktop view initially
-      if(!this.isInitialized) return;
+      if (!this.isInitialized) return;
       // Changed to Desktop View - do a switch if expanded
       switchView();
     } else {
@@ -91,11 +87,11 @@ class GooeyChat {
       this.isMobile = true;
       switchView(true, this.wrapper);
     }
-  };
+  }
 
   checkClientWidth() {
     const mq = window.matchMedia("(min-width: 640px)");
-    if(!mq.matches) this.adaptViewport(mq);
+    if (!mq.matches) this.adaptViewport(mq);
     mq.addEventListener("change", this.adaptViewport);
   }
 
@@ -103,11 +99,11 @@ class GooeyChat {
     if (!document.getElementById(IFRAME_ID)) {
       window.addEventListener("message", this.receiveMessage, false);
       const wrapper = document.createElement("div");
-      wrapper.setAttribute('style', WRAPPER_STYLES_DESKTOP);
+      wrapper.setAttribute("style", WRAPPER_STYLES_DESKTOP);
       wrapper.id = WRAPPER_ID;
       this.wrapper = wrapper;
     }
-  };
+  }
 
   mountUpIframe() {
     // Main Injection happens here...
@@ -128,52 +124,58 @@ class GooeyChat {
       iframe.src = IFRAME_URL;
       iframe.id = IFRAME_ID;
       iframe.allowFullscreen = true;
-      iframe.setAttribute('style', 'background:transparent; position: absolute; bottom: 0; right: 0; z-index:10000; border: none;width: 100%; height: 100%;')
+      iframe.role = "dialog";
+      iframe.title = "Gooey Chat Widget";
+      iframe.setAttribute("style", "width: 100%; height: 100%; border:none;");
       this.iframe = iframe;
     }
-  };
+  }
 
   onDomManipulation = (eventType, payload) => {
     const fn = DomEventTypes[eventType];
-    if(eventType === "DOM_MAXIMIZE_WIDGET"){
+    if (eventType === "DOM_MAXIMIZE_WIDGET") {
       this.isExpanded = true;
     }
-    if(eventType === "DOM_MINIMIZE_WIDGET"){
-      if(payload) window.localStorage.setItem("gooeyChatPlugin", payload); // Also save payload if there
+    if (eventType === "DOM_MINIMIZE_WIDGET") {
+      if (payload) window.localStorage.setItem("gooeyChatPlugin", payload); // Also save payload if there
       this.isExpanded = false;
     }
     fn && fn(this.isMobile);
     const store = window.localStorage.getItem("gooeyChatPlugin");
-    this.iframe.contentWindow.postMessage({
-      type: markEventDone(eventType),
-      payload: eventType ===  "DOM_MAXIMIZE_WIDGET" ? store : null
-    }, "*");
+    this.iframe.contentWindow.postMessage(
+      {
+        type: markEventDone(eventType),
+        payload: eventType === "DOM_MAXIMIZE_WIDGET" ? store : null,
+      },
+      "*"
+    );
   };
 
   onStoreManipulation = (eventType, payload) => {
     const fn = StoreEventTypes[eventType];
     fn(payload);
-    this.iframe.contentWindow.postMessage({
-      type: markEventDone(eventType),
-    }, "*");
+    this.iframe.contentWindow.postMessage(
+      {
+        type: markEventDone(eventType),
+      },
+      "*"
+    );
   };
 
   receiveMessage = (event) => {
-    if(!!event && !!event.data && !!event.data.type) {
-      const eventType = event.data.type || '';
+    if (!!event && !!event.data && !!event.data.type) {
+      const eventType = event.data.type || "";
       const payload = event.data.payload;
       // Manipulate DOM
-      if(eventType && eventType.includes("DOM")){
+      if (eventType && eventType.includes("DOM")) {
         this.onDomManipulation(eventType, payload);
-      };
-
-      if(eventType && eventType.includes("STORE")){
-        this.onStoreManipulation(eventType, payload);
       }
 
+      if (eventType && eventType.includes("STORE")) {
+        this.onStoreManipulation(eventType, payload);
+      }
     }
-  }
-
+  };
 }
 
 function main(window){

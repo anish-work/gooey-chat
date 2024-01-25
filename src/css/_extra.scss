@@ -63,6 +63,10 @@
   color: white !important;
 }
 
+.buttonB:active svg {
+  stroke: white !important;
+}
+
 /* Add this attribute to the element that needs a tooltip */
 [data-tooltip] {
   position: relative;
@@ -190,6 +194,9 @@
 
 .cr-pointer {
   cursor: pointer;
+}
+.stroke-white {
+  stroke: white !important;
 }
 
 @media (max-width: 1100px) {

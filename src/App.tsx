@@ -8,15 +8,18 @@ import { useSystemContext } from "./contexts/hooks";
 function App() {
   const { open }: any = useSystemContext();
   return (
-    <div
-      className={clsx(
-        "h-100 no-scroll-bar br-large overflow-hidden",
-        open && "bg-light"
-      )}
-    >
-      {!open && <Launcher />}
-      {open && <Widget />}
-      {/* <Widget /> */}
+    <div tabIndex={-1} role="reigon">
+      <div
+        className={clsx(
+          "br-large pos-absolute d-flex flex-col",
+          open && "bg-light"
+        )}
+        style={{ inset: 0 }}
+      >
+        {!open && <Launcher />}
+        {open && <Widget />}
+        {/* <Widget /> */}
+      </div>
     </div>
   );
 }

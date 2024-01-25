@@ -58,7 +58,7 @@ const Messages = () => {
   const { messages, isSending }: any = useMessagesContext();
 
   return (
-    <div className="h-100 bg-white mt-16 mr-16 mb-16 p-16  overflow-scroll br-large-right">
+    <div className="flex-1 bg-white mt-16 mr-16 mb-16 overflow-scroll p-16 br-large-right">
       {!messages?.size && !isSending && <PlaceholderMessage />}
       <Response queue={Array.from(messages.keys())} data={messages} />
       {!!messages?.size && !isSending && <Suggestions />}
