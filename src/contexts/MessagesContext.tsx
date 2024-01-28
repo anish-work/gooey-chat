@@ -4,6 +4,7 @@ import { sendMessageApi } from "../api/message";
 
 interface IncomingMsg {
   input_prompt: string;
+  messages: [];
 }
 
 // const DummyData: any = {
@@ -72,9 +73,21 @@ const MessagesContextProvider = (props: any) => {
   const [isSending, setIsSendingMessage] = useState(false);
 
   const initializeQuery = (query: string) => {
+    const lastResponse: any = Array.from(messages.values()).pop(); // will get the data from last server msg
+    const _messages: any = [...(lastResponse?.final_prompt.slice(1) || [])];
+    if (messages.size) {
+      // add the latest output_text
+      _messages.push({
+        role: "assistant",
+        content: lastResponse?.output_text[0] || "",
+      });
+    }
     setIsSendingMessage(true);
     const newQuery = createNewQuery(query);
-    sendPrompt({ input_prompt: query });
+    sendPrompt({
+      input_prompt: query,
+      messages: _messages,
+    });
     addResponse(newQuery);
   };
 
